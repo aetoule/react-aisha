@@ -14,7 +14,6 @@ const COMPLETED = "COMPLETED";
 export default function reducer(state = initialState, action) {
     switch(action.type) {
         case `${GET_TASK_LIST}_FULFILLED`:
-            console.log('fired')
             return {...state, taskArray: action.payload}
         case `${ ADD_TASK}_FULFILLED`:
             return {...state, task: action.payload}
@@ -33,7 +32,6 @@ export function setTaskArray() {
     return {
         type: GET_TASK_LIST,
         payload: axios.get('https://practiceapi.devmountain.com/api/tasks').then(res => {
-            console.log(res.data)
             return res.data
         })
     }
@@ -61,7 +59,6 @@ export function updateTask(id, title, description) {
     return {
         type: UPDATE_TASK,
         payload: axios.patch(`https://practiceapi.devmountain.com/api/tasks/${id}`, {title, description}).then( res => {
-            console.log('updated')
             return window.location.replace('/')
         })
     }  

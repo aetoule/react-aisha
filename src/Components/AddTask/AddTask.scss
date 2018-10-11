@@ -1,0 +1,44 @@
+@import '../../assets.scss';
+@import '../../App.scss';
+
+.add-task-form {
+    border-bottom-style: solid;
+    border-width: 1px;
+    width: 100%;
+    box-shadow: 0 4px 2px -2px gray;
+
+}
+
+.input-line {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 90%;
+    border-bottom: 1px solid black;
+    margin:0 auto;
+    outline:none;
+    font-size: 17px;
+}
+
+.todo-content {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.add-button-disabled {
+    @include button-style;
+    margin-top: 20px;
+    color: white;
+    background-color: lightblue;
+}
+
+
+.add-button-abled {
+    @include button-style;
+    margin-top: 20px;
+    color: white;
+    background-color: $blue;
+
+}
+

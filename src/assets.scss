@@ -1,0 +1,16 @@
+@mixin button-style {
+    border-radius: 3px;
+    background-color: lightgray;
+    padding: 10px;
+    border-style: none;
+}
+
+@mixin x-btn {
+    background-color: transparent;
+}
+
+@mixin complete-btn-style {
+    border-radius: 3px;
+    background-color: lightgray;
+    border-style: none;
+}

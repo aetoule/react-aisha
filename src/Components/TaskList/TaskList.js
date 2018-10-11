@@ -23,17 +23,23 @@ class TaskList extends Component {
                     <div className="one-task-container">
                         {task.completed
                         ?
-                        <div>
-                            <strike><p>{task.title}</p></strike>
-                            <button className="complete-btn-grayed" >Complete</button>
+                        <div className="title-complete-x-btn">
+                            <strike><p className="todo-title">{task.title}</p></strike>
+                            <div className="complete-and-x-btn">
+                                <button className="complete-btn-grayed" disabled={true}>Complete</button>
+                                <button className="delete-btn-x" onClick={() => this.handleDelete(task.id)}>X</button>
+                            </div>
                         </div>
                         :
-                        <div>
-                            <p>{task.title}</p>
-                            <button className="complete-btn" onClick={() => this.props.completed(this.task.id)}>Complete</button>
+                        <div className="title-complete-x-btn">
+                            <p className="todo-title">{task.title}</p>
+                            <div className="complete-and-x-btn">
+                                <button className="complete-btn" onClick={() => this.props.completed(task.id)}>Complete</button>
+                                <button className="delete-btn-x" onClick={() => this.handleDelete(task.id)}>X</button>
+                            </div>
                         </div>
                         }
-                        <button className="delete-btn-x" onClick={() => this.handleDelete(task.id)}>XX</button>
+                        
                     </div>
                 </Link>
             )
@@ -55,5 +61,4 @@ const mapStateToProps = state => {
         completed
     }
 }
-// // export default TaskList;
 export default connect (mapStateToProps, {setTaskArray, deleteTask, completed}) (TaskList);

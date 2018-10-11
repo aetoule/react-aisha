@@ -8,42 +8,28 @@ class OneTask extends Component {
         super(props);
         this.state = { 
             task: {},
-            // id: 0,
-            // title: 'hi from state title',
-            // description: 'hi from state description',
-            // completed: false
          }
     }
 
     componentDidMount() {
-        console.log('this.props ', this.props)
-        console.log('this.props.taskArray ', this.props.taskArray)
-
         const taskId = this.props.match.params.id;
-        console.log('should print the id of the task ', taskId)
         let currentTask = this.props.taskArray.find(task => task.id == taskId)
+
         this.setState({
             id: taskId
         })
-        // localStorage.setItem('taskKey', JSON.stringify(currentTask));
+
         let taskKey = localStorage.getItem('taskKey');
-        console.log('taskKey ', taskKey)
-
-
-        console.log('plz log current task', currentTask)
-        console.log('this.props.taskArray ', this.props.taskArray)
         if (currentTask == undefined) {
             this.setState({
                 task: JSON.parse(taskKey)
             })
         } else{
             localStorage.setItem('taskKey', JSON.stringify(currentTask));
-
             this.setState({
                 task: currentTask
             })
         } 
-        
     }
 
     handleTitleEdits = (e) => {
@@ -57,7 +43,7 @@ class OneTask extends Component {
             description: e
         })
     }
-    // navigate user back to home
+
     handleComplete = (id) => {
         this.setState({
             completed: true
@@ -65,7 +51,6 @@ class OneTask extends Component {
         this.props.completed(id)
     }
     
-    // save changes then navigate user back to home
     handleSave = (id, title, description) => {
         this.setState({
             id: id,
@@ -76,24 +61,19 @@ class OneTask extends Component {
 
     }
     
-    // set the input fields' values back to their original value
     handleCancel = () => {
         this.props.history.goBack()
     }
 
-    // navigate user back to home
     handleDelete = (id) => {
         this.props.deleteTask(id)
     }
     
-
     render() { 
-
         return ( 
             <div>
                 <button onClick={() => this.props.history.goBack()}>Back to Tasks</button>
                 <p>Task</p>
-                {/* <h1>{this.state.task.title !== undefined ? this.state.task.title : null}</h1> */}
                 <input type="text" defaultValue={this.state.task.title} onChange={(e) => this.handleTitleEdits(e.target.value)}></input>
                 <button onClick={() => this.handleComplete(this.state.task.id)}>Complete</button>
                 <p>Description</p>
@@ -101,7 +81,6 @@ class OneTask extends Component {
                 <button className="save" onClick={() => this.handleSave(this.state.task.id, this.state.task.title, this.state.task.description)}>Save</button>
                 <button className="cancel" onClick={() => this.handleCancel()}>Cancel</button>
                 <button className="delete" onClick={() => this.handleDelete(this.state.task.id)}>Delete</button>
-
             </div>
          );
     }
@@ -117,5 +96,4 @@ const mapStateToProps = state => {
         completed
     }
 }
-// // export default TaskList;
 export default connect (mapStateToProps, {setTaskArray, updateTask, deleteTask, completed}) (withRouter(OneTask));
