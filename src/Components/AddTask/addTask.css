@@ -1,0 +1,18 @@
+
+.add-task-form {
+    border-bottom-style: solid;
+    border-width: 1px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100%;
+}
+
+.input-line {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 90%;
+    border-bottom: 1px solid black;
+    margin:0 auto
+}
